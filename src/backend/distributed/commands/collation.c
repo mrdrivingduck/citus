@@ -62,7 +62,7 @@ CreateCollationDDLInternal(Oid collationId, Oid *collowner, char **quotedCollati
 	Form_pg_collation collationForm = (Form_pg_collation) GETSTRUCT(heapTuple);
 	char collprovider = collationForm->collprovider;
 	Oid collnamespace = collationForm->collnamespace;
-	const char *collname = NameStr(collationForm->collname);
+	const char *collname = pstrdup(NameStr(collationForm->collname));
 	bool collisdeterministic = collationForm->collisdeterministic;
 
 	char *collcollate;
